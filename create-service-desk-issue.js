@@ -73,34 +73,34 @@ function setIssuePriority(key, priority_name) {
         path: '/rest/api/2/issue/' + key
     });
 
-    var payload = {
+    var editIssuePayload = {
         fields: {
             priority: {
                 name: priority_name
             }
         }
     };
-    var response = editIssue.write(payload);
-    if (response.statusCode == 204) {
+    var editIssueResponse = editIssue.write(editIssuePayload);
+    if (editIssueResponse.statusCode == 204) {
         console.log("Set issue priority successfully")
     } else {
-        var error;
+        var editIssueError;
         try {
-            respBody = JSON.parse(response.body);
-            error = ' messages: ' + (
+            respBody = JSON.parse(editIssueResponse.body);
+            editIssueError = ' messages: ' + (
                 respBody.errorMessages.length > 0
                     ? respBody.errorMessages.join(' ')
                     : bundleErrors(respBody.errors)
             );
         } catch (e) {
-            error = ': ' + response.body;
+            editIssueError = ': ' + editIssueResponse.body;
         }
         throw new Error(
             'Failed to set priority for "' + key + '", '
             + 'Jira Server API returned '
-            + '[' + response.statusCode + '] '
+            + '[' + editIssueResponse.statusCode + '] '
             + 'and the following'
-            + error
+            + editIssueError
         );
     }
 }
