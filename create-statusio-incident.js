@@ -154,10 +154,11 @@ if (componentIncident !== null) {
             }
         }
     }
+    console.log("After messages, update="+update+", lastState="+lastState);
     if (update || lastState != 100) {
         var updateIncidentBody = {
             "statuspage_id": input["Status.io Page ID"],
-            "incident_id": componentIncident.result._id,
+            "incident_id": componentIncident._id,
             "notify_email": input['Notify email'],
             "notify_sms": input['Notify SMS'],
             "notify_webhook": input['Notify webhook'],
@@ -169,10 +170,10 @@ if (componentIncident !== null) {
             "current_state": 100
         };
 
-        if (update) {
-            updateIncidentBody["incident_details"] = "Increased incident severity";
-        } else {
+        if (lastState != 100) {
             updateIncidentBody["incident_details"] = "New issue detected to be investigated";
+        } else {
+            updateIncidentBody["incident_details"] = "Increased incident severity";
         }
 
         var updateIncidentRequest = http.request({
@@ -186,6 +187,8 @@ if (componentIncident !== null) {
             }
         });
         updateIncidentRequest.write(updateIncidentBody);
+    } else {
+        console.log("No update of existing incident required");
     }
 } else {
     // No incident found for this component so let's create one.
