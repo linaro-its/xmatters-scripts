@@ -126,7 +126,7 @@ function processIncident(incident) {
     // Update the Status.io incident to the desired values.
     var updateIncidentBody = {
         "statuspage_id": input["Status.io Page ID"],
-        "incident_id": componentIncident.result._id,
+        "incident_id": componentIncident._id,
         "notify_email": input['Notify email'],
         "notify_sms": input['Notify SMS'],
         "notify_webhook": input['Notify webhook'],
