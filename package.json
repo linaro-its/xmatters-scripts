@@ -1,0 +1,23 @@
+{
+  "name": "xmatters-scripts",
+  "version": "1.0.0",
+  "description": "This repository contains scripts used in Linaro workflows on xMatters.",
+  "main": "create-service-desk-issue.js",
+  "dependencies": {},
+  "devDependencies": {
+    "eslint": "^6.8.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/linaro-its/xmatters-scripts.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/linaro-its/xmatters-scripts/issues"
+  },
+  "homepage": "https://github.com/linaro-its/xmatters-scripts#readme"
+}
