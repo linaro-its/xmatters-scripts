@@ -8,7 +8,7 @@
 // to this component.
 var request = http.request({ 
     "endpoint": "xMatters",
-    "path": "/api/xm/1/events?status=ACTIVE&embed=properties&propertyName=AffectedComponent&propertyValue="+encodeURIComponent(input["Affected Component"]),
+    "path": "/api/xm/1/events?status=ACTIVE&embed=properties&propertyName=AffectedComponent%23en&propertyValue="+encodeURIComponent(input["Affected Component"]),
     "method": "GET",
     "autoEncodeURI": false
 });
