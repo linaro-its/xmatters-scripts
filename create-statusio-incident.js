@@ -91,6 +91,8 @@ function findIncident(component) {
         }
 
         console.log("  didn't match an incident to this component");
+    } else {
+        console.log("  no active incidents to match against");
     }
 
     return null;
@@ -218,5 +220,10 @@ if (componentIncident !== null) {
             'x-api-key': input["Status.io API Key"]
         }
     });
-    newIncidentRequest.write(newIncidentBody);
+    // Do another check on Status.io just to make sure an incident didn't get created while
+    // this was running ... this isn't entirely safe against race conditions but it should
+    // narrow the window of opportunity.
+    if (findIncident(input["Status.io Component"]) === null) {
+        newIncidentRequest.write(newIncidentBody);
+    }
 }
